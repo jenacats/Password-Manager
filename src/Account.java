@@ -221,5 +221,8 @@ public class Account {
         this.ansThree = ansThree;
     }
 
+    public String toString(){
+        return "Name " +　firstName + " " + lastName;
+    }
 
 }
