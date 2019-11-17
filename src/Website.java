@@ -266,4 +266,8 @@ public class Website {
     public void setAnsThree(String ansThree) {
         this.ansThree = ansThree;
     }
+    
+    public String toString(){
+        return "Website name: " + websiteName + System.lineSeparator() + "Security level: " + String.valueOf(securityLevel);
+    }
 }
