@@ -19,6 +19,13 @@ public class Account {
     public Account(String firstName, String lastName){
         this.firstName = firstName;
         this.lastName = lastName;
+
+        this.questOne = "";
+        this.ansOne = "";
+        this.questTwo = "";
+        this.ansTwo = "";
+        this.questThree = "";
+        this.ansThree = "";
     }
 
     /**
@@ -34,6 +41,11 @@ public class Account {
         this.lastName = lastName;
         this.questOne = questOne;
         this.ansOne = ansOne;
+
+        this.questTwo = "";
+        this.ansTwo = "";
+        this.questThree = "";
+        this.ansThree = "";
     }
 
     /**
@@ -53,6 +65,9 @@ public class Account {
         this.questTwo = questTwo;
         this.ansOne = ansOne;
         this.ansTwo = ansTwo;
+
+        this.questThree = "";
+        this.ansThree = "";
     }
 
     /**
