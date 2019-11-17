@@ -11,8 +11,19 @@ public class Account {
 
 
     /**
-     * Contructs account object with 2 security questions
+     * Contructs account object
      * Note: Accounts need a minimum of one security question
+     * @param firstName First name of user
+     * @param lastName Last name of user
+     */
+    public Account(String firstName, String lastName){
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    /**
+     * Contructs account object with 1 security questions
+     *
      * @param firstName First name of user
      * @param lastName Last name of user
      * @param questOne Security question 1
