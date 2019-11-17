@@ -268,6 +268,6 @@ public class Website {
     }
     
     public String toString(){
-        return "Website name: " + websiteName + System.lineSeparator() + "Security level: " + String.valueOf(securityLevel);
+        return "Website name: " + websiteName + "\n" + "Security level: " + String.valueOf(securityLevel);
     }
 }
