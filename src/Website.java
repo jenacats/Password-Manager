@@ -63,4 +63,8 @@ public class Website {
     public void setSecurityAnswer(String securityAnswer) {
         this.securityAnswer = securityAnswer;
     }
+    
+    public String toString(){
+        return "Website name: " + websiteName + "\n" + "Security level: " + String.valueOf(securityLevel);
+    }
 }

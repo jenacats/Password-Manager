@@ -173,7 +173,14 @@ public class Account {
         this.ansThree = ansThree;
     }
 
+<<<<<<< HEAD
     public void setDirectory(String directory) {
         this.directory = directory;
     }
+=======
+    public String toString(){
+        return "Name " +　firstName + " " + lastName;
+    }
+
+>>>>>>> 2913824041c9c486f91ba66b4245da70ffeaf91c
 }
