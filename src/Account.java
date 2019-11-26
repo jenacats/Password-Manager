@@ -1,7 +1,12 @@
+/**
+ * Purpose of this class is to create "user accounts" for the password manger
+ * this will allow multiple people to use the password manager on the same computer
+ */
 
 public class Account {
     private String firstName;
     private String lastName;
+    private String directory;
     private String questOne;
     private String questTwo;
     private String questThree;
@@ -9,89 +14,32 @@ public class Account {
     private String ansTwo;
     private String ansThree;
 
-
-    /**
-     * Contructs account object
-     * Note: Accounts need a minimum of one security question
-     * @param firstName First name of user
-     * @param lastName Last name of user
-     */
-    public Account(String firstName, String lastName){
+    public Account(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.directory = "C:/Users/" + System.getProperty("user.name") + "/Documents";
 
         this.questOne = "";
+        this.questTwo = "";
+        this.questThree = "";
         this.ansOne = "";
-        this.questTwo = "";
         this.ansTwo = "";
-        this.questThree = "";
         this.ansThree = "";
     }
 
-    /**
-     * Contructs account object with 1 security questions
-     *
-     * @param firstName First name of user
-     * @param lastName Last name of user
-     * @param questOne Security question 1
-     * @param ansOne Answer to security question 1
-     */
-    public Account(String firstName, String lastName, String questOne, String ansOne){
+    public Account(String firstName, String lastName, String directory) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.questOne = questOne;
-        this.ansOne = ansOne;
+        this.directory = directory;
 
+        this.questOne = "";
         this.questTwo = "";
+        this.questThree = "";
+        this.ansOne = "";
         this.ansTwo = "";
-        this.questThree = "";
         this.ansThree = "";
     }
 
-    /**
-     * Contructs account object with 2 security questions
-     *
-     * @param firstName First name of user
-     * @param lastName Last name of user
-     * @param questOne Security question 1
-     * @param questTwo Security question 2
-     * @param ansOne Answer to security question 1
-     * @param ansTwo Answer to security question 2
-     */
-    public Account(String firstName, String lastName, String questOne, String questTwo, String ansOne, String ansTwo){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.questOne = questOne;
-        this.questTwo = questTwo;
-        this.ansOne = ansOne;
-        this.ansTwo = ansTwo;
-
-        this.questThree = "";
-        this.ansThree = "";
-    }
-
-    /**
-     * Contructs account object with 3 security questions
-     *
-     * @param firstName First name of user
-     * @param lastName Last name of user
-     * @param questOne Security question 1
-     * @param questTwo Security question 2
-     * @param questThree Security question 3
-     * @param ansOne Answer to security question 1
-     * @param ansTwo Answer to security question 2
-     * @param ansThree Answer to security question 3
-     */
-    public Account(String firstName, String lastName, String questOne, String questTwo, String questThree, String ansOne, String ansTwo, String ansThree){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.questOne = questOne;
-        this.questTwo = questTwo;
-        this.questThree = questThree;
-        this.ansOne = ansOne;
-        this.ansTwo = ansTwo;
-        this.ansThree = ansThree;
-    }
 
     /**
      *
@@ -107,6 +55,10 @@ public class Account {
      */
     public String getLastName() {
         return lastName;
+    }
+
+    public String getDirectory() {
+        return directory;
     }
 
     /**
@@ -221,5 +173,7 @@ public class Account {
         this.ansThree = ansThree;
     }
 
-
+    public void setDirectory(String directory) {
+        this.directory = directory;
+    }
 }
