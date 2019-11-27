@@ -25,7 +25,11 @@ public class FileHandler {
      * @throws FileException throws this if file does not exist
      */
     public FileHandler(String path) throws FileException{
-        file = new File(path);
+        String updatedPath = path;
+        if (path.contains("\\")){
+            updatedPath = path.replaceAll("\\\\", "/");
+        }
+        file = new File(updatedPath);
 
         if (!file.exists()){
             throw new FileException("File doesn't exist!");
@@ -38,7 +42,12 @@ public class FileHandler {
      * @throws FileException Throws this if there is a problem creating a new folder
      */
     public void createDirectory(String path) throws FileException {
-        File folder = new File(path + "Password_Manager");
+        String updatedPath = path;
+        if (path.contains("\\")){
+            updatedPath = path.replaceAll("\\\\", "/");
+        }
+
+        File folder = new File(updatedPath + "Password_Manager");
         boolean createFile = folder.mkdir();
         if (createFile){
             file = folder;
