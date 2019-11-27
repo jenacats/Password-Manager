@@ -97,14 +97,14 @@ public class FileHandler {
             if (data.exists()){
                 FileReader fileReader = new FileReader(data.getPath());
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
-                String total = "";
+                String total = bufferedReader.readLine() + System.lineSeparator();
 
-                for (int i = 0; i < 6; i++){
+                for (int i = 1; i < 6; i++){
                     String line = bufferedReader.readLine();
                     if (i == 3 || i == 5){
                         String decoded = new String(decoder.decode(line));
                     }
-                    total += line;
+                    total += line + System.lineSeparator();
                 }
 
                 bufferedReader.close();
