@@ -16,6 +16,15 @@ public class Website {
         this.securityAnswer = "";
     }
 
+    public Website(String url, String websiteName, String username, String password, String securityQuestion, String securityAnswer) {
+        this.url = url;
+        this.websiteName = websiteName;
+        this.username = username;
+        this.password = password;
+        this.securityQuestion = securityQuestion;
+        this.securityAnswer = securityAnswer;
+    }
+
     public String getUrl() {
         return url;
     }

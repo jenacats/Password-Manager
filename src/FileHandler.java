@@ -25,7 +25,7 @@ public class FileHandler {
      * @throws FileException throws this if file does not exist
      */
     public FileHandler(String path) throws FileException{
-        File file = new File(path);
+        file = new File(path);
 
         if (!file.exists()){
             throw new FileException("File doesn't exist!");
@@ -56,38 +56,44 @@ public class FileHandler {
      * line 5 security question
      * line 6 encoded answer for question
      * @param website Website object, filehandler will use data from this
-     * @throws FileException throws this incase file does not exist
+     * @throws FileException throws this incase file does not exist, or text doc already exists
      * @throws IOException
      */
     public void addWebsite(Website website) throws FileException, IOException {
-        if (file == null){
+        if (file == null) {
             throw new FileException("File doesn't exist");
         } else {
-            File textDoc = new File (file.getPath() + website.getWebsiteName() + ".txt");
-            textDoc.createNewFile();
-            FileWriter fileWriter = new FileWriter(textDoc);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            File data = new File(file.getPath() + "/" + website.getWebsiteName() + ".txt");
+            if (data.exists()){
+                throw new FileException("Text doc already exists!");
 
-            String encodedPW = encoder.encodeToString(website.getPassword().getBytes());
-            String encodedAns = encoder.encodeToString(website.getSecurityAnswer().getBytes());
+            } else {
+                File textDoc = new File (file.getPath() + "/" + website.getWebsiteName() + ".txt");
+                textDoc.createNewFile();
+                FileWriter fileWriter = new FileWriter(textDoc);
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            bufferedWriter.write(website.getWebsiteName() + "\n" +
-                    website.getUrl() + "\n" +
-                    website.getUsername() + "\n" +
-                    encodedPW + "\n" +
-                    website.getSecurityQuestion() + "\n" +
-                    encodedAns
-            );
+                String encodedPW = encoder.encodeToString(website.getPassword().getBytes());
+                String encodedAns = encoder.encodeToString(website.getSecurityAnswer().getBytes());
 
-            bufferedWriter.close();
+                bufferedWriter.write(website.getWebsiteName() + System.lineSeparator() +
+                        website.getUrl() + System.lineSeparator() +
+                        website.getUsername() + System.lineSeparator() +
+                        encodedPW + System.lineSeparator() +
+                        website.getSecurityQuestion() + System.lineSeparator() +
+                        encodedAns
+                );
+
+                bufferedWriter.close();
+            }
         }
     }
 
-    public void readWebsite(Website website) throws FileException, IOException {
+    public String readWebsite(Website website) throws FileException, IOException {
         if (file == null){
             throw new FileException("Folder doesn't exist");
         } else {
-            File data = new File(file.getPath() + website.getWebsiteName());
+            File data = new File(file.getPath() + "/" + website.getWebsiteName() + ".txt");
             if (data.exists()){
                 FileReader fileReader = new FileReader(data.getPath());
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -100,6 +106,9 @@ public class FileHandler {
                     }
                     total += line;
                 }
+
+                bufferedReader.close();
+                return total;
             } else {
                 throw new FileException("Text doc doesn't exist");
             }
