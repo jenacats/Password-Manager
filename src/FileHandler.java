@@ -8,9 +8,12 @@ import java.util.Base64;
 
 public class FileHandler {
     private File file;
+    private final Base64.Decoder decoder = Base64.getDecoder();
+    private final Base64.Encoder encoder = Base64.getEncoder();
 
     /**
      * Creates filehandler object but will need to createDirectory
+     * file variable should hold the folder or directory of where data is stored
      */
     public FileHandler(){
         file = null;
@@ -65,9 +68,6 @@ public class FileHandler {
             FileWriter fileWriter = new FileWriter(textDoc);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            Base64.Decoder decoder = Base64.getDecoder();
-            Base64.Encoder encoder = Base64.getEncoder();
-
             String encodedPW = encoder.encodeToString(website.getPassword().getBytes());
             String encodedAns = encoder.encodeToString(website.getSecurityAnswer().getBytes());
 
@@ -80,6 +80,19 @@ public class FileHandler {
             );
 
             bufferedWriter.close();
+        }
+    }
+
+    public void readWebsite(Website website) throws FileException{
+        if (file == null){
+            throw new FileException("Folder doesn't exist");
+        } else {
+            File data = new File(file.getPath() + website.getWebsiteName());
+            if (data.exists()){
+
+            } else {
+                throw new FileException("Text doc doesn't exist");
+            }
         }
     }
 }
