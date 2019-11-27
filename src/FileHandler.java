@@ -98,11 +98,11 @@ public class FileHandler {
         }
     }
 
-    public String readWebsite(Website website) throws FileException, IOException {
+    public String readWebsite(String website) throws FileException, IOException {
         if (file == null){
             throw new FileException("Folder doesn't exist");
         } else {
-            File data = new File(file.getPath() + "/" + website.getWebsiteName() + ".txt");
+            File data = new File(file.getPath() + "/" + website + ".txt");
             if (data.exists()){
                 FileReader fileReader = new FileReader(data.getPath());
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -125,11 +125,11 @@ public class FileHandler {
         }
     }
 
-    public void deleteWebsite(Website website) throws FileException {
+    public void deleteWebsite(String website) throws FileException {
         if (file == null) {
             throw new FileException("Folder doesn't exist");
         } else {
-            File data = new File(file.getPath() + "/" + website.getWebsiteName() + ".txt");
+            File data = new File(file.getPath() + "/" + website + ".txt");
             if (data.exists()){
                 if (!data.delete()){
                     throw new FileException("Error in deletion");
@@ -140,11 +140,11 @@ public class FileHandler {
         }
     }
 
-    public String getQuestion(Website website) throws FileException, IOException {
+    public String getQuestion(String website) throws FileException, IOException {
         if (file == null){
             throw new FileException("Folder doesn't exist");
         } else {
-            File data = new File(file.getPath() + "/" + website.getWebsiteName() + ".txt");
+            File data = new File(file.getPath() + "/" + website + ".txt");
             if (data.exists()){
                 FileReader fileReader = new FileReader(data.getPath());
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -161,11 +161,11 @@ public class FileHandler {
         }
     }
 
-    public String getAnswer(Website website) throws FileException, IOException {
+    public String getAnswer(String website) throws FileException, IOException {
         if (file == null){
             throw new FileException("Folder doesn't exist");
         } else {
-            File data = new File(file.getPath() + "/" + website.getWebsiteName() + ".txt");
+            File data = new File(file.getPath() + "/" + website + ".txt");
             if (data.exists()){
                 FileReader fileReader = new FileReader(data.getPath());
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
