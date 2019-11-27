@@ -102,7 +102,8 @@ public class FileHandler {
                 for (int i = 1; i < 6; i++){
                     String line = bufferedReader.readLine();
                     if (i == 3 || i == 5){
-                        String decoded = new String(decoder.decode(line));
+
+                        line = new String(decoder.decode(line));
                     }
                     total += line + System.lineSeparator();
                 }
