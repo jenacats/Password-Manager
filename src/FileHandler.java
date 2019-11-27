@@ -83,13 +83,23 @@ public class FileHandler {
         }
     }
 
-    public void readWebsite(Website website) throws FileException{
+    public void readWebsite(Website website) throws FileException, IOException {
         if (file == null){
             throw new FileException("Folder doesn't exist");
         } else {
             File data = new File(file.getPath() + website.getWebsiteName());
             if (data.exists()){
+                FileReader fileReader = new FileReader(data.getPath());
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                String total = "";
 
+                for (int i = 0; i < 6; i++){
+                    String line = bufferedReader.readLine();
+                    if (i == 3 || i == 5){
+                        String decoded = new String(decoder.decode(line));
+                    }
+                    total += line;
+                }
             } else {
                 throw new FileException("Text doc doesn't exist");
             }
