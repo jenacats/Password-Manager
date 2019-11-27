@@ -139,4 +139,45 @@ public class FileHandler {
             }
         }
     }
+
+    public String getQuestion(Website website) throws FileException, IOException {
+        if (file == null){
+            throw new FileException("Folder doesn't exist");
+        } else {
+            File data = new File(file.getPath() + "/" + website.getWebsiteName() + ".txt");
+            if (data.exists()){
+                FileReader fileReader = new FileReader(data.getPath());
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                String question = "";
+                for (int i = 0; i < 4; i++){
+                    bufferedReader.readLine();
+                }
+                question = bufferedReader.readLine();
+
+                return question;
+            } else {
+                throw new FileException("Text doc doesn't exist");
+            }
+        }
+    }
+
+    public String getAnswer(Website website) throws FileException, IOException {
+        if (file == null){
+            throw new FileException("Folder doesn't exist");
+        } else {
+            File data = new File(file.getPath() + "/" + website.getWebsiteName() + ".txt");
+            if (data.exists()){
+                FileReader fileReader = new FileReader(data.getPath());
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                for (int i = 0; i < 5; i++){
+                    bufferedReader.readLine();
+                }
+                String answer = new String(decoder.decode(bufferedReader.readLine()));
+
+                return answer;
+            } else {
+                throw new FileException("Text doc doesn't exist");
+            }
+        }
+    }
 }
