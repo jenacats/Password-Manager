@@ -115,4 +115,19 @@ public class FileHandler {
             }
         }
     }
+
+    public void deleteWebsite(Website website) throws FileException {
+        if (file == null) {
+            throw new FileException("Folder doesn't exist");
+        } else {
+            File data = new File(file.getPath() + "/" + website.getWebsiteName() + ".txt");
+            if (data.exists()){
+                if (!data.delete()){
+                    throw new FileException("Error in deletion");
+                }
+            } else {
+                throw new FileException("Text doc doesn't exist");
+            }
+        }
+    }
 }
