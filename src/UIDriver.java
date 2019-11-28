@@ -12,7 +12,7 @@ public class UIDriver {
             }
         }
         JFrame frame = new JFrame("Password Manager");
-        frame.setSize(400, 350);
+        frame.setSize(700, 500);
         frame.setLocation(200, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setContentPane(new PasswordManagerPanel());
