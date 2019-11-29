@@ -6,12 +6,12 @@ public class PasswordManagerPanel extends JPanel {
       private JLabel label;
     private JButton enterButton;
     private JButton exitButton;
+    private JButton addButton;
     private JTextField input;
 
 
     private JPanel eastPanel;
     private JPanel westPanel;
-    private JPanel northPanel;
 
     public PasswordManagerPanel()
     {
@@ -28,9 +28,6 @@ public class PasswordManagerPanel extends JPanel {
         westPanel= new JPanel(new FlowLayout());
         add(westPanel, BorderLayout.WEST);
         northPanel = new JPanel(new FlowLayout());
-        //add(westPanel, BorderLayout.NORTH);
-
-        //northPanel.add(label);
 
         enterButton = new JButton ("OK");
         enterButton.addActionListener(new searchListener());
@@ -42,8 +39,9 @@ public class PasswordManagerPanel extends JPanel {
         exitButton = new JButton("EXIT");
         exitButton.addActionListener(new exitListener());
 
-        add(exitButton, BorderLayout.SOUTH);
-        //label.setHorizontalAlignment(SwingConstants.RIGHT);
+        addButton = new JButton("ADD NEW WEBSITE");
+        addButton.addActionListener(new addListener());
+        eastPanel.add(addButton);
 
     }
     private class searchListener implements ActionListener
@@ -59,6 +57,14 @@ public class PasswordManagerPanel extends JPanel {
         public void actionPerformed(ActionEvent e)
         {
             System.exit(0);
+        }
+    }
+      
+    private class addListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+
         }
     }
 }
