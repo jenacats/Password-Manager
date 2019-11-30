@@ -1,5 +1,7 @@
 package newpackage;
 
+import java.awt.CardLayout;
+
 /**
  *
  * @author minhvan
@@ -88,6 +90,11 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
         websiteTF.setText("WEBSITE NAME");
 
         searchB.setText("SEARCH");
+        searchB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBActionPerformed(evt);
+            }
+        });
 
         addWebB.setText("ADD NEW WEBSITE");
         addWebB.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +113,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
             homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(homePanelLayout.createSequentialGroup()
                 .addComponent(addWebB, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 15, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,7 +129,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
             .addGroup(homePanelLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(homeTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(websiteTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchB))
@@ -131,7 +138,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        parentPanel.add(homePanel, "card2");
+        parentPanel.add(homePanel, "homePanel");
 
         addPanel.setPreferredSize(new java.awt.Dimension(450, 290));
 
@@ -178,6 +185,11 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
         urlTF.setText("REQUIRED");
 
         saveB.setText("SAVE");
+        saveB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout addPanelLayout = new javax.swing.GroupLayout(addPanel);
         addPanel.setLayout(addPanelLayout);
@@ -217,7 +229,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
-                .addContainerGap(51, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(addPanelLayout.createSequentialGroup()
                         .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,7 +288,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
         );
 
-        parentPanel.add(addPanel, "card3");
+        parentPanel.add(addPanel, "addPanel");
 
         qPanel.setPreferredSize(new java.awt.Dimension(450, 290));
 
@@ -298,6 +310,11 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
         answer3TF.setText("A3");
 
         submitB.setText("SUBMIT");
+        submitB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitBActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout qPanelLayout = new javax.swing.GroupLayout(qPanel);
         qPanel.setLayout(qPanelLayout);
@@ -318,7 +335,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
             .addGroup(qPanelLayout.createSequentialGroup()
                 .addGap(163, 163, 163)
                 .addComponent(submitB)
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
         qPanelLayout.setVerticalGroup(
             qPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,10 +354,10 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
                     .addComponent(answer3TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(submitB)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
-        parentPanel.add(qPanel, "card4");
+        parentPanel.add(qPanel, "qPanel");
 
         aPanel.setPreferredSize(new java.awt.Dimension(450, 290));
 
@@ -379,7 +396,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
                 .addContainerGap(99, Short.MAX_VALUE))
         );
 
-        parentPanel.add(aPanel, "card5");
+        parentPanel.add(aPanel, "aPanel");
 
         getContentPane().add(parentPanel, java.awt.BorderLayout.CENTER);
 
@@ -404,6 +421,49 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
 
     private void addWebBActionPerformed(java.awt.event.ActionEvent evt) {                                        
         // TODO add your handling code here:
+        CardLayout card = (CardLayout)parentPanel.getLayout();
+        card.show(parentPanel, "addPanel");
+    }                                       
+
+    private void saveBActionPerformed(java.awt.event.ActionEvent evt) {                                      
+        // TODO add your handling code here:
+        boolean check = true;
+        //check if all required text files are filled in & create a new website object
+        //if required are not full, then check = false & will show ERROR
+        //if "?" is not detected, then check = false & will show ERROR
+        if(check)
+        {
+           CardLayout card = (CardLayout)parentPanel.getLayout();
+            card.show(parentPanel, "homePanel"); 
+        }
+    }                                     
+
+    private void submitBActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        // TODO add your handling code here:
+        boolean check = true;
+        //if all questions are answered correctly, then go to answer panel & change labels 
+        //if question does not exist, then if left blank: is correct
+        if(check)
+        {
+           CardLayout card = (CardLayout)parentPanel.getLayout();
+            card.show(parentPanel, "aPanel"); 
+        }
+    }                                       
+
+    private void searchBActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        // TODO add your handling code here:
+        //if website is found in textfile, then change question1L, question2L, question3L
+        //^if the website has less than 3 questions, change visibility or leave blank & say in instructions
+        //^^figure out which one is better
+        //if website is not found, then "Error: Website does not exist"
+        //if website is found, then go to question panel
+        boolean check = true;
+        
+        if(check)
+        {
+           CardLayout card = (CardLayout)parentPanel.getLayout();
+            card.show(parentPanel, "qPanel"); 
+        }
     }                                       
 
     /**
