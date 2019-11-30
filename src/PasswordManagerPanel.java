@@ -1,5 +1,3 @@
-package newpackage;
-
 import java.awt.CardLayout;
 
 /**
@@ -146,16 +144,12 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
 
         makeQL.setText("QUESTION");
 
-        userTF.setText("REQUIRED");
         userTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userTFActionPerformed(evt);
             }
         });
 
-        passTF.setText("REQUIRED");
-
-        q1TF.setText("REQUIRED");
         q1TF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 q1TFActionPerformed(evt);
@@ -168,10 +162,6 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
 
         webNameL.setText("WEBSITE NAME");
 
-        webNameTF.setText("REQUIRED");
-
-        urlTF.setText("REQUIRED");
-
         saveB.setText("SAVE");
         saveB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,8 +170,6 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
         });
 
         makeAL.setText("ANSWER");
-
-        a1TF.setText("REQUIRED");
 
         javax.swing.GroupLayout addPanelLayout = new javax.swing.GroupLayout(addPanel);
         addPanel.setLayout(addPanelLayout);
@@ -242,7 +230,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
                                 .addComponent(passL)
                                 .addGap(18, 18, 18)
                                 .addComponent(webNameL)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                                 .addComponent(urlL)
                                 .addGap(25, 25, 25))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
@@ -367,6 +355,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
 
     private void addWebBActionPerformed(java.awt.event.ActionEvent evt) {                                        
         // TODO add your handling code here:
+        
         CardLayout card = (CardLayout)parentPanel.getLayout();
         card.show(parentPanel, "addPanel");
     }                                       
@@ -379,11 +368,64 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
         //if "?" is not detected, then check = false & will show ERROR
         String name = webNameTF.getText();
         String url = urlTF.getText();
-        
+        String user = userTF.getText();
+        String pass = passTF.getText();
+        String question = q1TF.getText();
+        String answer = a1TF.getText();
+        if(name.equals("") || url.equals("") || user.equals("") || pass.equals("")|| question.equals("") || answer.equals(""))
+            check=false;
+
         if(check)
         {
-           CardLayout card = (CardLayout)parentPanel.getLayout();
-            card.show(parentPanel, "homePanel"); 
+            //FileHandler fileHandler = new FileHandler();
+            //add website
+            Website web = new Website(url, name, user, pass,question,answer);
+            //fileHandler.addWebsite(web);
+
+            //reset all colors & text fields
+            
+            userL.setForeground(new java.awt.Color(0, 0, 0));
+            urlL.setForeground(new java.awt.Color(0, 0, 0));
+            webNameL.setForeground(new java.awt.Color(0, 0, 0));
+            passL.setForeground(new java.awt.Color(0, 0, 0));
+            makeQL.setForeground(new java.awt.Color(0, 0, 0));
+            makeAL.setForeground(new java.awt.Color(0, 0, 0));
+            
+            userTF.setText("");
+            urlTF.setText("");
+            webNameTF.setText("");
+            passTF.setText("");
+            q1TF.setText("");
+            a1TF.setText("");
+            //change card
+            CardLayout card = (CardLayout)parentPanel.getLayout();
+            card.show(parentPanel, "homePanel");
+        }
+        else
+        {
+            if(name.equals(""))
+            {
+                webNameL.setForeground(new java.awt.Color(100, 0, 0));
+            }
+            if(url.equals("")) {
+                urlL.setForeground(new java.awt.Color(100, 0, 0));
+            }
+            if(user.equals(""))
+            {
+                userL.setForeground(new java.awt.Color(100, 0, 0));
+            }
+            if(pass.equals(""))
+            {
+                passL.setForeground(new java.awt.Color(100, 0, 0));
+            }
+            if(question.equals(""))
+            {
+                makeQL.setForeground(new java.awt.Color(100, 0, 0));
+            }
+            if(answer.equals(""))
+            {
+                makeAL.setForeground(new java.awt.Color(100, 0, 0));
+            }
         }
     }                                     
 
@@ -425,28 +467,6 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PasswordManagerPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PasswordManagerPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PasswordManagerPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PasswordManagerPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -454,6 +474,9 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
                 new PasswordManagerPanel().setVisible(true);
             }
         });
+        
+        //FileHandler fHandler = new FileHandler();
+        //fHandler.createDirectory("Documents");
     }
 
     // Variables declaration - do not modify                     
