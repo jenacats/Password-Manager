@@ -2,7 +2,7 @@ package newpackage;
 
 /**
  *
- * @author minhvan
+ * 
  */
 public class PasswordManagerPanel extends javax.swing.JFrame {
 
