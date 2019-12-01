@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.io.IOException;
 
 /**
  *
@@ -89,7 +90,13 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
         searchB.setText("SEARCH");
         searchB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchBActionPerformed(evt);
+                try {
+                    searchBActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (FileException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -174,7 +181,13 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
         saveB.setText("SAVE");
         saveB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveBActionPerformed(evt);
+                try {
+                    saveBActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (FileException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -275,7 +288,13 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
         submitB.setText("SUBMIT");
         submitB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitBActionPerformed(evt);
+                try {
+                    submitBActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (FileException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -372,7 +391,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
 
 
 
-    private void saveBActionPerformed(java.awt.event.ActionEvent evt) {
+    private void saveBActionPerformed(java.awt.event.ActionEvent evt) throws IOException, FileException {
         // TODO add your handling code here:
         boolean check = true;
         //check if all required text files are filled in & create a new website object
@@ -389,9 +408,9 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
 
         if(check)
         {
-            //add website
+            FileHandler fHandler = new FileHandler("C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager");
             Website web = new Website(url, name, user, pass,question,answer);
-            //addWebsite(web);
+            fHandler.addWebsite(web);
 
             //reset all colors & text fields
 
@@ -441,31 +460,46 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
 
     }
 
-    private void submitBActionPerformed(java.awt.event.ActionEvent evt) {
+    private void submitBActionPerformed(java.awt.event.ActionEvent evt) throws IOException, FileException {
         // TODO add your handling code here:
+        FileHandler fHandler = new FileHandler("C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager");
+        String answer = fHandler.getAnswer(websiteTF.getText());
         boolean check = true;
+        System.out.println("ASDAD");
+        if (!answer1TF.getText().equals(answer)){ // checks whether the user answered the question correctly
+            check = false;
+            System.out.println(answer1TF.getText());
+        }
         //if all questions are answered correctly, then go to answer panel & change labels
         //if question does not exist, then if left blank: is correct
         if(check)
         {
+            String [] data = fHandler.readWebsite(websiteTF.getText()); // gets an array with website data
+            websiteNL.setText(websiteNL.getText() + data[0]);
+            websiteUrlL.setText(websiteUrlL.getText() + data[1]);
+            usernameL.setText(usernameL.getText() + data[2]);
+            passwordL.setText(passwordL.getText() + data[3]);
+
             CardLayout card = (CardLayout)parentPanel.getLayout();
             card.show(parentPanel, "aPanel");
         }
     }
 
-    private void searchBActionPerformed(java.awt.event.ActionEvent evt) {
+    private void searchBActionPerformed(java.awt.event.ActionEvent evt) throws IOException, FileException {
         // TODO add your handling code here:
         //if website is found in textfile, then change question1L, question2L, question3L
         //^if the website has less than 3 questions, change visibility or leave blank & say in instructions
         //^^figure out which one is better
         //if website is not found, then "Error: Website does not exist"
         //if website is found, then go to question panel
-        boolean check = true;
+        FileHandler fHandler = new FileHandler("C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager");
+        boolean check = fHandler.checkWebsite(websiteTF.getText()); // checks if website exists
 
-        String str = websiteTF.getText();
 
         if(check)
         {
+            question1L.setText("Q1: " + fHandler.getQuestion(websiteTF.getText())); // sets question 1 label to the question it gets from the text file
+
             CardLayout card = (CardLayout)parentPanel.getLayout();
             card.show(parentPanel, "qPanel");
         }
@@ -478,7 +512,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws FileException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -509,13 +543,9 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
             }
         });
 
-//        try {
-//            FileHandler fileHandler = new FileHandler();
-//            fileHandler.createDirectory("C:\\Users\\minhvan\\Documents");
-//        }catch (Exception e)
-//        {
-//
-//        }
+        String path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\"; // path of where passwordmanager folder will be located
+        FileHandler fHandler = new FileHandler();
+        fHandler.createDirectory(path); // if there is no folder named "Password_Manager" at location then it will create one, if there is already one then it should do nothing
     }
 
     // Variables declaration - do not modify
