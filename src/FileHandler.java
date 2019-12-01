@@ -48,11 +48,15 @@ public class FileHandler {
         }
 
         File folder = new File(updatedPath + "Password_Manager");
-        boolean createFile = folder.mkdir();
-        if (createFile){
-            file = folder;
+        if (!folder.exists()){
+            boolean createFile = folder.mkdir();
+            if (createFile){
+                file = folder;
+            } else {
+                throw new FileException("Error in creating folder");
+            }
         } else {
-            throw new FileException("Error in creating folder");
+            file = folder;
         }
     }
 
@@ -98,7 +102,7 @@ public class FileHandler {
         }
     }
 
-    public String readWebsite(String website) throws FileException, IOException {
+    public String [] readWebsite(String website) throws FileException, IOException {
         if (file == null){
             throw new FileException("Folder doesn't exist");
         } else {
@@ -106,7 +110,8 @@ public class FileHandler {
             if (data.exists()){
                 FileReader fileReader = new FileReader(data.getPath());
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
-                String total = bufferedReader.readLine() + System.lineSeparator();
+                String [] total = new String[6];
+                total[0] = bufferedReader.readLine() + System.lineSeparator();
 
                 for (int i = 1; i < 6; i++){
                     String line = bufferedReader.readLine();
@@ -114,13 +119,26 @@ public class FileHandler {
 
                         line = new String(decoder.decode(line));
                     }
-                    total += line + System.lineSeparator();
+                    total[i] = line + System.lineSeparator();
                 }
 
                 bufferedReader.close();
                 return total;
             } else {
                 throw new FileException("Text doc doesn't exist");
+            }
+        }
+    }
+
+    public boolean checkWebsite(String website) throws FileException {
+        if (file == null){
+            throw new FileException("Folder doesn't exist");
+        } else {
+            File data = new File(file.getPath() + "/" + website + ".txt");
+            if (data.exists()){
+                return true;
+            } else {
+                return false;
             }
         }
     }
