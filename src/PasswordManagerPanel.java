@@ -466,7 +466,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
         String answer = fHandler.getAnswer(websiteTF.getText());
         boolean check = true;
         System.out.println("ASDAD");
-        if (!answer1TF.getText().equals(answer)){ // checks whether the user answered the question correctly
+        if (!answer1TF.getText().toLowerCase().equals(answer)){ // checks whether the user answered the question correctly
             check = false;
             System.out.println(answer1TF.getText());
         }
