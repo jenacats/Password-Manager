@@ -190,7 +190,7 @@ public class FileHandler {
                 for (int i = 0; i < 5; i++){
                     bufferedReader.readLine();
                 }
-                String answer = new String(decoder.decode(bufferedReader.readLine()));
+                String answer = new String(decoder.decode(bufferedReader.readLine())).toLowerCase();
 
                 return answer;
             } else {
