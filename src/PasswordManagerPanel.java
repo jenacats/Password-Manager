@@ -529,7 +529,15 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
 
         if(check)
         {
-            FileHandler fHandler = new FileHandler("C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager");
+            String path = "";
+            String os = System.getProperty("os.name");
+            if (os.contains("Win")){
+                path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager"; // path of where passwordmanager folder will be located
+            } else {
+                path = " /Users/"+ System.getProperty("user.name") + "/Documents/Password_Manager";
+            }
+
+            FileHandler fHandler = new FileHandler(path);
             Website web = new Website(url, name, user, pass,question,answer);
             fHandler.addWebsite(web);
 
@@ -589,14 +597,22 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
      */
     private void submitBActionPerformed(java.awt.event.ActionEvent evt) throws IOException, FileException {
         // TODO add your handling code here:
-        FileHandler fHandler = new FileHandler("C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager");
-        String answer = fHandler.getAnswer(websiteTF.getText());
-        boolean check = true;
-        System.out.println("correct");
 
-        if(answer1TF.getText().equals(answer)){ // checks whether the user answered the question correctly
+        String path = "";
+        String os = System.getProperty("os.name");
+        if (os.contains("Win")){
+            path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager"; // path of where passwordmanager folder will be located
+        } else {
+            path = " /Users/"+ System.getProperty("user.name") + "/Documents/Password_Manager";
+        }
+
+        FileHandler fHandler = new FileHandler(path);
+        String answer = fHandler.getAnswer(websiteTF.getText());
+        String textAnswer = answer1TF.getText().toLowerCase();
+        boolean check = false;
+
+        if(textAnswer.equals(answer)){ // checks whether the user answered the question correctly
             check = true;
-            System.out.println(answer1TF.getText());
         }
         //question is answered correctly, then go to answer panel & change labels
         //if question does not exist, then if left blank: is correct
@@ -630,7 +646,16 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
         //if website is found in textfile, then change question1L, question2L, question3L
         //if website is not found, then "Error: Website does not exist"
         //if website is found, then go to question panel
-        FileHandler fHandler = new FileHandler("C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager");
+
+        String path = "";
+        String os = System.getProperty("os.name");
+        if (os.contains("Win")){
+            path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager"; // path of where passwordmanager folder will be located
+        } else {
+            path = " /Users/"+ System.getProperty("user.name") + "/Documents/Password_Manager";
+        }
+
+        FileHandler fHandler = new FileHandler(path);
         boolean check = fHandler.checkWebsite(websiteTF.getText()); // checks if website exists
 
 
@@ -737,7 +762,14 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
             }
         });
 
-        String path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\"; // path of where passwordmanager folder will be located
+        String path = "";
+        String os = System.getProperty("os.name");
+        if (os.contains("Win")){
+            path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\"; // path of where passwordmanager folder will be located
+        } else {
+            path = " /Users/"+ System.getProperty("user.name") + "/Documents";
+        }
+
         FileHandler fHandler = new FileHandler();
         fHandler.createDirectory(path); // if there is no folder named "Password_Manager" at location then it will create one, if there is already one then it should do nothing
     }
