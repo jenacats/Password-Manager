@@ -632,10 +632,10 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         if(check)
         {
             String [] data = fHandler.readWebsite(websiteTF.getText()); // gets an array with website data
-            websiteNL.setText(websiteNL.getText() + data[0]);
-            websiteUrlL.setText(websiteUrlL.getText() + data[1]);
-            usernameL.setText(usernameL.getText() + data[2]);
-            passwordL.setText(passwordL.getText() + data[3]);
+            websiteNL.setText("WEBSITE NAME: " + data[0]);
+            websiteUrlL.setText("WEBSITE URL: " + data[1]);
+            usernameL.setText("USERNAME: " + data[2]);
+            passwordL.setText("PASSWORD: " + data[3]);
 
             question1L.setForeground(Color.BLACK);
 
@@ -760,10 +760,14 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         String password = editPassTF.getText();
         String question = editQTF.getText();
         String ans = editATF.getText();
+
         
         Website newWeb = new Website(url, name, username, password, question, ans);
         CardLayout card = (CardLayout)parentPanel.getLayout();
-        fHandler.editData(newWeb); 
+        fHandler.editData(newWeb);
+
+
+
         card.show(parentPanel, "homePanel");
         // TODO add your handling code here:
         //update fields from text fields
