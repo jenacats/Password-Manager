@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.io.IOException;
 
@@ -6,7 +5,7 @@ import java.io.IOException;
  *
  * @author Minhvy Van, Mohammed Shahabuddin,Wei-Chen Yen
  */
-public class PasswordManagerPanel extends javax.swing.JFrame {
+public class PasswordManagerPanel extends javax.swing.JFrame{
 
     /**
      * Creates new form PasswordManagerPanel
@@ -284,9 +283,9 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
 
         qPanel.setPreferredSize(new java.awt.Dimension(450, 290));
 
-        question1L.setText("Q1: ");
+        question1L.setText("Question 1: ");
 
-        answer1TF.setText("A1");
+        answer1TF.setText("Answer 1");
 
         submitB.setText("SUBMIT");
         submitB.addActionListener(new java.awt.event.ActionListener() {
@@ -350,7 +349,13 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
         editB.setText("EDIT");
         editB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editBActionPerformed(evt);
+                try {
+					editBActionPerformed(evt);
+				} catch (FileException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            
             }
         });
 
@@ -407,7 +412,15 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
         editSaveB.setText("SAVE");
         editSaveB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editSaveBActionPerformed(evt);
+                try {
+					editSaveBActionPerformed(evt);
+				} catch (FileException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -661,7 +674,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
 
         if(check)
         {
-            question1L.setText("Q1: " + fHandler.getQuestion(websiteTF.getText())); // sets question 1 label to the question it gets from the text file
+            question1L.setText("Question 1: " + fHandler.getQuestion(websiteTF.getText())); // sets question 1 label to the question it gets from the text file
 
             CardLayout card = (CardLayout)parentPanel.getLayout();
             card.show(parentPanel, "qPanel");
@@ -705,23 +718,53 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
         card.show(parentPanel, "homePanel");
     }
     private void editDeleteBActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        
+    	// TODO add your handling code here:
         //delete website
         //reset all textfields in editPanel
         //?asks user if they are sure they want to delete?
         //after deleting, go to home page
     }
 
-    private void editBActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-        //go to editPanel
-        //change editTitle to include the website name and url
-        //pre-set all textFields with already saved information
+    private void editBActionPerformed(java.awt.event.ActionEvent evt) throws FileException {
+    	
+    	String path = "";
+        String os = System.getProperty("os.name");
+        if (os.contains("Win")){
+            path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager"; // path of where passwordmanager folder will be located
+        } else {
+            path = " /Users/"+ System.getProperty("user.name") + "/Documents/Password_Manager";
+        }
+
+        FileHandler fHandler = new FileHandler(path);
+    	
         CardLayout card = (CardLayout)parentPanel.getLayout();
         card.show(parentPanel, "editPanel");
+        
     }
 
-    private void editSaveBActionPerformed(java.awt.event.ActionEvent evt) {
+    private void editSaveBActionPerformed(java.awt.event.ActionEvent evt) throws FileException, IOException{
+    	
+    	String path = "";
+        String os = System.getProperty("os.name");
+        if (os.contains("Win")){
+            path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager"; // path of where passwordmanager folder will be located
+        } else {
+            path = " /Users/"+ System.getProperty("user.name") + "/Documents/Password_Manager";
+        }
+
+        FileHandler fHandler = new FileHandler(path);
+        String name = websiteTF.getText();
+        String url = (fHandler.readWebsite(name))[1];
+        String username = editUserTF.getText();
+        String password = editPassTF.getText();
+        String question = editQTF.getText();
+        String ans = editATF.getText();
+        
+        Website newWeb = new Website(url, name, username, password, question, ans);
+        CardLayout card = (CardLayout)parentPanel.getLayout();
+        fHandler.editData(newWeb); 
+        card.show(parentPanel, "homePanel");
         // TODO add your handling code here:
         //update fields from text fields
         //error if left blank
@@ -733,7 +776,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
      */
     public static void main(String args[]) throws FileException {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        //<or-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
