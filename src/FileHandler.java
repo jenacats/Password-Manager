@@ -119,7 +119,7 @@ public class FileHandler {
 
                         line = new String(decoder.decode(line));
                     }
-                    total[i] = line + System.lineSeparator();
+                    total[i] = line;
                 }
 
                 bufferedReader.close();
@@ -172,6 +172,7 @@ public class FileHandler {
                 }
                 question = bufferedReader.readLine();
 
+                bufferedReader.close();
                 return question;
             } else {
                 throw new FileException("Text doc doesn't exist");
@@ -192,10 +193,21 @@ public class FileHandler {
                 }
                 String answer = new String(decoder.decode(bufferedReader.readLine())).toLowerCase();
 
+                bufferedReader.close();
                 return answer;
+
             } else {
                 throw new FileException("Text doc doesn't exist");
             }
         }
+    }
+
+    public void editData(Website website) throws FileException, IOException {
+      if (file == null){
+        throw new FileException("Folder doesn't exist");
+      } else {
+        deleteWebsite(website.getWebsiteName());
+        addWebsite(website);
+      }
     }
 }
