@@ -469,12 +469,13 @@ public class PasswordManagerPanel extends javax.swing.JFrame {
     private void submitBActionPerformed(java.awt.event.ActionEvent evt) throws IOException, FileException {
         // TODO add your handling code here:
         FileHandler fHandler = new FileHandler("C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager");
-        String answer = fHandler.getAnswer(websiteTF.getText());
+        String answer = fHandler.getAnswer(websiteTF.getText());       
         boolean check = true;
-        System.out.println("ASDAD");
-        if (!answer1TF.getText().toLowerCase().equals(answer)){ // checks whether the user answered the question correctly
-            check = false;
-            System.out.println(answer1TF.getText());
+        System.out.println("correct");
+
+        if(answer1TF.getText().equals(answer)){ // checks whether the user answered the question correctly
+            check = true;
+        System.out.println(answer1TF.getText());		
         }
         //question is answered correctly, then go to answer panel & change labels
         //if question does not exist, then if left blank: is correct
