@@ -547,7 +547,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
             if (os.contains("Win")){
                 path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager"; // path of where passwordmanager folder will be located
             } else {
-                path = " /Users/"+ System.getProperty("user.name") + "/Documents/Password_Manager";
+                path = "\\Users\\"+ System.getProperty("user.name") + "Documents\\Password_Manager";
             }
 
             FileHandler fHandler = new FileHandler(path);
@@ -616,7 +616,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         if (os.contains("Win")){
             path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager"; // path of where passwordmanager folder will be located
         } else {
-            path = " /Users/"+ System.getProperty("user.name") + "/Documents/Password_Manager";
+            path = "\\Users\\"+ System.getProperty("user.name") + "Documents\\Password_Manager";
         }
 
         FileHandler fHandler = new FileHandler(path);
@@ -665,7 +665,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         if (os.contains("Win")){
             path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager"; // path of where passwordmanager folder will be located
         } else {
-            path = " /Users/"+ System.getProperty("user.name") + "/Documents/Password_Manager";
+            path = "\\Users\\"+ System.getProperty("user.name") + "Documents\\Password_Manager";
         }
 
         FileHandler fHandler = new FileHandler(path);
@@ -733,7 +733,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         if (os.contains("Win")){
             path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager"; // path of where passwordmanager folder will be located
         } else {
-            path = " /Users/"+ System.getProperty("user.name") + "/Documents/Password_Manager";
+            path = "\\Users\\"+ System.getProperty("user.name") + "\\Documents\\Password_Manager";
         }
 
         FileHandler fHandler = new FileHandler(path);
@@ -750,7 +750,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         if (os.contains("Win")){
             path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager"; // path of where passwordmanager folder will be located
         } else {
-            path = " /Users/"+ System.getProperty("user.name") + "/Documents/Password_Manager";
+            path = "\\Users\\"+ System.getProperty("user.name") + "Documents\\Password_Manager";
         }
 
         FileHandler fHandler = new FileHandler(path);
@@ -814,7 +814,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         if (os.contains("Win")){
             path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\"; // path of where passwordmanager folder will be located
         } else {
-            path = " /Users/"+ System.getProperty("user.name") + "/Documents";
+            path = "\\Users\\"+ System.getProperty("user.name") + "\\Documents";
         }
 
         FileHandler fHandler = new FileHandler();
