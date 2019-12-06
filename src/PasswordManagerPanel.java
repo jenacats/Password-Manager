@@ -341,7 +341,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
                     editBActionPerformed(evt);
-                } catch (FileException e) {
+                } catch (FileException | IOException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
@@ -391,7 +391,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
 
         editPanel.setPreferredSize(new java.awt.Dimension(550, 390));
 
-        editL.setText("Edit/Delete Website [PUT WEBSITE NAME AND URL]");
+        editL.setText("Edit / Delete Website [PUT WEBSITE NAME AND URL]");
 
         editUserL.setText("USERNAME");
 
@@ -556,20 +556,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
             fHandler.addWebsite(web);
 
             //reset all colors & text fields
-
-            userL.setForeground(Color.BLACK);
-            urlL.setForeground(Color.BLACK);
-            webNameL.setForeground(Color.BLACK);
-            passL.setForeground(Color.BLACK);
-            makeQL.setForeground(Color.BLACK);
-            makeAL.setForeground(Color.BLACK);
-
-            userTF.setText("");
-            urlTF.setText("");
-            webNameTF.setText("");
-            passTF.setText("");
-            q1TF.setText("");
-            a1TF.setText("");
+            resetText();
             //change card
             CardLayout card = (CardLayout)parentPanel.getLayout();
             card.show(parentPanel, "homePanel");
@@ -688,35 +675,18 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
      */
     private void backBActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        userL.setForeground(Color.BLACK);
-        urlL.setForeground(Color.BLACK);
-        webNameL.setForeground(Color.BLACK);
-        passL.setForeground(Color.BLACK);
-        makeQL.setForeground(Color.BLACK);
-        makeAL.setForeground(Color.BLACK);
 
-        userTF.setText("");
-        urlTF.setText("");
-        webNameTF.setText("");
-        passTF.setText("");
-        q1TF.setText("");
-        a1TF.setText("");
-
+        resetText();
         CardLayout card = (CardLayout)parentPanel.getLayout();
         card.show(parentPanel, "homePanel");
     }
 
     private void homeBActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        websiteNL.setText("");
-        websiteUrlL.setText("");
-        usernameL.setText("");
-        passwordL.setText("");
-
-        question1L.setText("");
 
         CardLayout card = (CardLayout)parentPanel.getLayout();
         card.show(parentPanel, "homePanel");
+        resetText();
     }
 private void editDeleteBActionPerformed(java.awt.event.ActionEvent evt) throws FileException {
         
@@ -725,7 +695,7 @@ private void editDeleteBActionPerformed(java.awt.event.ActionEvent evt) throws F
         if (os.contains("Win")){
             path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager"; // path of where passwordmanager folder will be located
         } else {
-            path = " /Users/"+ System.getProperty("user.name") + "/Documents/Password_Manager";
+            path = "/Users/"+ System.getProperty("user.name") + "/Documents/Password_Manager";
         }
 
         FileHandler fHandler = new FileHandler(path);
@@ -734,23 +704,32 @@ private void editDeleteBActionPerformed(java.awt.event.ActionEvent evt) throws F
 
         CardLayout card = (CardLayout)parentPanel.getLayout();
         card.show(parentPanel, "homePanel");
+        resetText();
     }
 
-    private void editBActionPerformed(java.awt.event.ActionEvent evt) throws FileException {
-    	
-    	String path = "";
+    /**
+     * Goes to edit panel when clicked, and sets header label
+     * @param evt
+     * @throws FileException
+     */
+    private void editBActionPerformed(java.awt.event.ActionEvent evt) throws FileException, IOException {
+        String path = "";
         String os = System.getProperty("os.name");
         if (os.contains("Win")){
             path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager"; // path of where passwordmanager folder will be located
         } else {
-            path = " /Users/"+ System.getProperty("user.name") + "/Documents/Password_Manager";
+            path = "\\Users\\"+ System.getProperty("user.name") + "\\Documents\\Password_Manager";
         }
 
-        FileHandler fHandler = new FileHandler(path);
-    	
+        FileHandler fileHandler = new FileHandler(path);
+
+        String name = websiteTF.getText();
+        String url = (fileHandler.readWebsite(name))[1];
+
         CardLayout card = (CardLayout)parentPanel.getLayout();
         card.show(parentPanel, "editPanel");
-        
+
+        editL.setText("Edit / Delete Website: " + name + " [" + url + "]");
     }
 
     private void editSaveBActionPerformed(java.awt.event.ActionEvent evt) throws FileException, IOException{
@@ -760,8 +739,10 @@ private void editDeleteBActionPerformed(java.awt.event.ActionEvent evt) throws F
         if (os.contains("Win")){
             path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager"; // path of where passwordmanager folder will be located
         } else {
-            path = " /Users/"+ System.getProperty("user.name") + "/Documents/Password_Manager";
+            path = "\\Users\\"+ System.getProperty("user.name") + "\\Documents\\Password_Manager";
         }
+
+
         CardLayout card = (CardLayout)parentPanel.getLayout();
         FileHandler fHandler = new FileHandler(path);
         String name = websiteTF.getText();
@@ -771,9 +752,27 @@ private void editDeleteBActionPerformed(java.awt.event.ActionEvent evt) throws F
         String question = editQTF.getText();
         String ans = editATF.getText();
 
+
         if (name.equals("")||url.equals("")||username.equals("")||password.equals("")||question.equals("")||ans.equals("")) {
         	
-        	editL.setText("pls fill every blank");
+        	editL.setText("Edit / Delete Website: " + name + " [" + url + "] Fill out all textfields before saving");
+
+            if(username.equals(""))
+            {
+                editUserL.setForeground(Color.RED);
+            }
+            if(password.equals(""))
+            {
+                editPassL.setForeground(Color.RED);
+            }
+            if(question.equals(""))
+            {
+                editQL.setForeground(Color.RED);
+            }
+            if(ans.equals(""))
+            {
+                editAL.setForeground(Color.RED);
+            }
 
         }
         
@@ -781,11 +780,18 @@ private void editDeleteBActionPerformed(java.awt.event.ActionEvent evt) throws F
         	Website newWeb = new Website(url, name, username, password, question, ans);
         	fHandler.editData(newWeb);
         	card.show(parentPanel, "homePanel");
+
+            resetText();;
         }
+
+
     }
 
     private void editHomeBActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        CardLayout card = (CardLayout)parentPanel.getLayout();
+        card.show(parentPanel, "homePanel");
+        resetText();
     }
     /**
      * creates a new directory
@@ -832,6 +838,44 @@ private void editDeleteBActionPerformed(java.awt.event.ActionEvent evt) throws F
 
         FileHandler fHandler = new FileHandler();
         fHandler.createDirectory(path); // if there is no folder named "Password_Manager" at location then it will create one, if there is already one then it should do nothing
+    }
+
+    private void resetText(){
+        websiteNL.setText("");
+        websiteUrlL.setText("");
+        usernameL.setText("");
+        passwordL.setText("");
+        question1L.setText("");
+
+        userTF.setText("");
+        urlTF.setText("");
+        webNameTF.setText("");
+        passTF.setText("");
+        q1TF.setText("");
+        a1TF.setText("");
+        editL.setText("Edit / Delete Website: ");
+
+        editUserL.setForeground(Color.BLACK);
+        editPassL.setForeground(Color.BLACK);
+        editQL.setForeground(Color.BLACK);
+        editAL.setForeground(Color.BLACK);
+
+        editPassTF.setText("");
+        editUserTF.setText("");
+        editQTF.setText("");
+        editATF.setText("");
+
+        userL.setForeground(Color.BLACK);
+        urlL.setForeground(Color.BLACK);
+        webNameL.setForeground(Color.BLACK);
+        passL.setForeground(Color.BLACK);
+        makeQL.setForeground(Color.BLACK);
+        makeAL.setForeground(Color.BLACK);
+
+        websiteTF.setText("");
+        answer1TF.setText("");
+
+        editL.setText("Edit / Delete Website: ");
     }
 
     // Variables declaration - do not modify
