@@ -1,5 +1,8 @@
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -679,7 +682,27 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
             CardLayout card = (CardLayout)parentPanel.getLayout();
             card.show(parentPanel, "qPanel");
         }
-    }
+	 else {
+        	File currentDir = new File(path);
+        	File[] files = currentDir.listFiles();
+        	String searchInput = websiteTF.getText();
+        	ArrayList match = new ArrayList();
+        	
+        	for (File file : files) {
+        		String localfile = file.getName();
+        		if (localfile.contains(searchInput)) {
+        			match.add(localfile);
+        		}
+        	}
+        	if (match.size() == 0) {
+        		match.add("No website match to your search");
+        	}
+        	else{match.add("these txt found in your folder, are they the website you want to search?");
+        	}
+    		JOptionPane.showMessageDialog(null, match);
+	 }
+    }    
+    
 
     /**
      * back button on aPanel will direct to the home screen
