@@ -558,8 +558,8 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         if(name.equals("") || url.equals("") || user.equals("") || pass.equals("")|| question.equals("") || answer.equals("") || exist){
 
             if (exist){
-                addTitle.setText("FILE ALREADY EXISTS");
-                addTitle.setForeground(Color.RED);
+                JOptionPane.showMessageDialog(null, "Website with the name [" + name + "] already exists!" + System.lineSeparator() +
+                        "Please edit or delete the current file!");
             }
             check=false;
         }
