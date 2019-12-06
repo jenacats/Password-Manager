@@ -420,7 +420,12 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         editDeleteB.setText("DELETE");
         editDeleteB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editDeleteBActionPerformed(evt);
+                try {
+					editDeleteBActionPerformed(evt);
+				} catch (FileException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -713,42 +718,51 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         CardLayout card = (CardLayout)parentPanel.getLayout();
         card.show(parentPanel, "homePanel");
     }
-    private void editDeleteBActionPerformed(java.awt.event.ActionEvent evt) {
-
-        // TODO add your handling code here:
-        //delete website
-        //reset all textfields in editPanel
-        //?asks user if they are sure they want to delete?
-        //after deleting, go to home page
-    }
-
-    private void editBActionPerformed(java.awt.event.ActionEvent evt) throws FileException {
-
-        String path = "";
+private void editDeleteBActionPerformed(java.awt.event.ActionEvent evt) throws FileException {
+        
+    	String path = "";
         String os = System.getProperty("os.name");
         if (os.contains("Win")){
             path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager"; // path of where passwordmanager folder will be located
         } else {
-            path = "\\Users\\"+ System.getProperty("user.name") + "\\Documents\\Password_Manager";
+            path = " /Users/"+ System.getProperty("user.name") + "/Documents/Password_Manager";
         }
 
         FileHandler fHandler = new FileHandler(path);
+        fHandler.deleteWebsite(websiteTF.getText());
+
 
         CardLayout card = (CardLayout)parentPanel.getLayout();
-        card.show(parentPanel, "editPanel");
-
+        card.show(parentPanel, "homePanel");
     }
 
-    private void editSaveBActionPerformed(java.awt.event.ActionEvent evt) throws FileException, IOException{
-
-        String path = "";
+    private void editBActionPerformed(java.awt.event.ActionEvent evt) throws FileException {
+    	
+    	String path = "";
         String os = System.getProperty("os.name");
         if (os.contains("Win")){
             path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager"; // path of where passwordmanager folder will be located
         } else {
-            path = "\\Users\\"+ System.getProperty("user.name") + "\\Documents\\Password_Manager";
+            path = " /Users/"+ System.getProperty("user.name") + "/Documents/Password_Manager";
         }
 
+        FileHandler fHandler = new FileHandler(path);
+    	
+        CardLayout card = (CardLayout)parentPanel.getLayout();
+        card.show(parentPanel, "editPanel");
+        
+    }
+
+    private void editSaveBActionPerformed(java.awt.event.ActionEvent evt) throws FileException, IOException{
+    	
+    	String path = "";
+        String os = System.getProperty("os.name");
+        if (os.contains("Win")){
+            path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager"; // path of where passwordmanager folder will be located
+        } else {
+            path = " /Users/"+ System.getProperty("user.name") + "/Documents/Password_Manager";
+        }
+        CardLayout card = (CardLayout)parentPanel.getLayout();
         FileHandler fHandler = new FileHandler(path);
         String name = websiteTF.getText();
         String url = (fHandler.readWebsite(name))[1];
@@ -757,18 +771,17 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         String question = editQTF.getText();
         String ans = editATF.getText();
 
+        if (name.equals("")||url.equals("")||username.equals("")||password.equals("")||question.equals("")||ans.equals("")) {
+        	
+        	editL.setText("pls fill every blank");
 
-        Website newWeb = new Website(url, name, username, password, question, ans);
-        CardLayout card = (CardLayout)parentPanel.getLayout();
-        fHandler.editData(newWeb);
-
-
-
-        card.show(parentPanel, "homePanel");
-        // TODO add your handling code here:
-        //update fields from text fields
-        //error if left blank
-        //if saved correctly, reset all the textfields to default, go to aPanel
+        }
+        
+        else{
+        	Website newWeb = new Website(url, name, username, password, question, ans);
+        	fHandler.editData(newWeb);
+        	card.show(parentPanel, "homePanel");
+        }
     }
 
     private void editHomeBActionPerformed(java.awt.event.ActionEvent evt) {
