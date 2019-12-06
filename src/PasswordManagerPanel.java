@@ -532,26 +532,38 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         //check if all required text files are filled in & create a new website object
         //if required are not full, then check = false & will show ERROR
         //if "?" is not detected, then check = false & will show ERROR
+
+        String path = "";
+        String os = System.getProperty("os.name");
+        if (os.contains("Win")){
+            path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager"; // path of where passwordmanager folder will be located
+        } else {
+            path = "\\Users\\"+ System.getProperty("user.name") + "\\Documents\\Password_Manager";
+        }
+
+        FileHandler fHandler = new FileHandler(path);
+
         String name = webNameTF.getText();
         String url = urlTF.getText();
         String user = userTF.getText();
         String pass = passTF.getText();
         String question = q1TF.getText();
         String answer = a1TF.getText();
-        if(name.equals("") || url.equals("") || user.equals("") || pass.equals("")|| question.equals("") || answer.equals(""))
+
+        boolean exist = fHandler.checkWebsite(name);
+
+        if(name.equals("") || url.equals("") || user.equals("") || pass.equals("")|| question.equals("") || answer.equals("") || exist){
+
+            if (exist){
+                addTitle.setText("FILE ALREADY EXISTS");
+                addTitle.setForeground(Color.RED);
+            }
             check=false;
+        }
 
         if(check)
         {
-            String path = "";
-            String os = System.getProperty("os.name");
-            if (os.contains("Win")){
-                path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager"; // path of where passwordmanager folder will be located
-            } else {
-                path = "\\Users\\"+ System.getProperty("user.name") + "\\Documents\\Password_Manager";
-            }
 
-            FileHandler fHandler = new FileHandler(path);
             Website web = new Website(url, name, user, pass,question,answer);
             fHandler.addWebsite(web);
 
@@ -874,6 +886,9 @@ private void editDeleteBActionPerformed(java.awt.event.ActionEvent evt) throws F
 
         websiteTF.setText("");
         answer1TF.setText("");
+
+        addTitle.setText("ADD NEW WEBSITE");
+        addTitle.setForeground(Color.BLACK);
 
         editL.setText("Edit / Delete Website: ");
     }
