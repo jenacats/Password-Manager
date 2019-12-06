@@ -69,6 +69,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         editATF = new javax.swing.JTextField();
         editSaveB = new javax.swing.JButton();
         editDeleteB = new javax.swing.JButton();
+        editHomeB = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -83,19 +84,13 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Password Manager");
-//        addContainerListener(new java.awt.event.ContainerAdapter() {
-//            public void componentAdded(java.awt.event.ContainerEvent evt) {
-//                formComponentAdded(evt);
-//            }
-//        });
 
-        parentPanel.setPreferredSize(new java.awt.Dimension(450, 290));
+        parentPanel.setPreferredSize(new java.awt.Dimension(550, 390));
         parentPanel.setLayout(new java.awt.CardLayout());
 
-        homePanel.setPreferredSize(new java.awt.Dimension(450, 290));
+        homePanel.setPreferredSize(new java.awt.Dimension(550, 390));
 
         websiteTF.setText("WEBSITE NAME");
-
 
         searchB.setText("SEARCH");
         searchB.addActionListener(new java.awt.event.ActionListener() {
@@ -125,36 +120,37 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         homePanel.setLayout(homePanelLayout);
         homePanelLayout.setHorizontalGroup(
                 homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(homePanelLayout.createSequentialGroup()
-                                .addComponent(addWebB, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePanelLayout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(homeTitle)
+                                .addComponent(homeTitle)
+                                .addGap(82, 82, 82))
+                        .addGroup(homePanelLayout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(homePanelLayout.createSequentialGroup()
                                                 .addComponent(websiteTF, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(searchB)))
-                                .addGap(20, 20, 20))
+                                                .addGap(81, 81, 81)
+                                                .addComponent(searchB))
+                                        .addComponent(addWebB, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         homePanelLayout.setVerticalGroup(
                 homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(homePanelLayout.createSequentialGroup()
-                                .addGap(21, 21, 21)
+                                .addGap(17, 17, 17)
                                 .addComponent(homeTitle)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                                .addGap(137, 137, 137)
                                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(websiteTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(searchB))
-                                .addGap(99, 99, 99)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                                 .addComponent(addWebB)
                                 .addContainerGap())
         );
 
         parentPanel.add(homePanel, "homePanel");
 
-        addPanel.setPreferredSize(new java.awt.Dimension(450, 290));
+        addPanel.setPreferredSize(new java.awt.Dimension(550, 390));
 
         userL.setText("USERNAME");
 
@@ -184,7 +180,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
 
         makeAL.setText("ANSWER");
 
-        backB.setText("Back");
+        backB.setText("BACK");
         backB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBActionPerformed(evt);
@@ -196,96 +192,90 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         addPanelLayout.setHorizontalGroup(
                 addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(addPanelLayout.createSequentialGroup()
-                                .addContainerGap(35, Short.MAX_VALUE)
+                                .addContainerGap()
+                                .addComponent(backB)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(addPanelLayout.createSequentialGroup()
+                                .addContainerGap(97, Short.MAX_VALUE)
                                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(addPanelLayout.createSequentialGroup()
                                                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(urlL)
-                                                        .addComponent(webNameL))
-                                                .addGap(111, 111, 111)
-                                                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(userTF, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                                .addComponent(urlTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                                                                .addComponent(webNameTF, javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addComponent(passTF, javax.swing.GroupLayout.Alignment.LEADING)))
-                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                        .addComponent(userL)
+                                                        .addGroup(addPanelLayout.createSequentialGroup()
+                                                                .addComponent(addTitle)
+                                                                .addGap(182, 182, 182)
+                                                                .addComponent(saveB)))
+                                                .addGap(0, 80, Short.MAX_VALUE))
                                         .addGroup(addPanelLayout.createSequentialGroup()
                                                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                                .addGroup(addPanelLayout.createSequentialGroup()
-                                                                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                .addComponent(userL)
-                                                                                .addComponent(passL))
-                                                                        .addGap(346, 346, 346))
-                                                                .addGroup(addPanelLayout.createSequentialGroup()
-                                                                        .addComponent(addTitle)
-                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                        .addComponent(saveB)))
                                                         .addGroup(addPanelLayout.createSequentialGroup()
                                                                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                         .addComponent(makeAL)
                                                                         .addComponent(makeQL))
-                                                                .addGap(78, 78, 78)
+                                                                .addGap(62, 62, 62)
                                                                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                                        .addComponent(a1TF, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                                                                        .addComponent(q1TF))))
-                                                .addGap(0, 0, Short.MAX_VALUE))))
-                        .addGroup(addPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(backB)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                                                        .addComponent(q1TF, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                                                                        .addComponent(a1TF)))
+                                                        .addGroup(addPanelLayout.createSequentialGroup()
+                                                                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(webNameL)
+                                                                        .addComponent(passL)
+                                                                        .addComponent(urlL))
+                                                                .addGap(35, 35, 35)
+                                                                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(urlTF, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(passTF, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(webNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(userTF, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         addPanelLayout.setVerticalGroup(
                 addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
-                                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(addPanelLayout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(a1TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(13, 13, 13)
+                                                .addComponent(addTitle))
                                         .addGroup(addPanelLayout.createSequentialGroup()
-                                                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(addPanelLayout.createSequentialGroup()
-                                                                .addGap(13, 13, 13)
-                                                                .addComponent(addTitle)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(userL)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(passL)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(webNameL)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                                                                .addComponent(urlL)
-                                                                .addGap(25, 25, 25))
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
-                                                                .addContainerGap()
-                                                                .addComponent(saveB)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(userTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(passTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(webNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(urlTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                .addContainerGap()
+                                                .addComponent(saveB)
+                                                .addGap(18, 18, 18)
                                                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(q1TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(makeQL))
-                                                .addGap(11, 11, 11)
+                                                        .addComponent(userTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(userL))))
+                                .addGap(26, 26, 26)
+                                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(passL)
+                                        .addComponent(passTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(webNameL)
+                                        .addComponent(webNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(35, 35, 35)
+                                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
+                                                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(urlL)
+                                                        .addComponent(urlTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(21, 21, 21)
+                                                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(makeQL)
+                                                        .addComponent(q1TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(52, 52, 52))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(a1TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(makeAL)))
-                                .addGap(18, 18, 18)
                                 .addComponent(backB)
                                 .addGap(12, 12, 12))
         );
 
         parentPanel.add(addPanel, "addPanel");
 
-        qPanel.setPreferredSize(new java.awt.Dimension(450, 290));
+        qPanel.setPreferredSize(new java.awt.Dimension(550, 390));
 
-        question1L.setText("Question 1: ");
+        question1L.setText("Q1: ");
 
-        answer1TF.setText("Answer 1");
+        answer1TF.setText("A1");
 
         submitB.setText("SUBMIT");
         submitB.addActionListener(new java.awt.event.ActionListener() {
@@ -305,31 +295,31 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         qPanelLayout.setHorizontalGroup(
                 qPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(qPanelLayout.createSequentialGroup()
-                                .addGap(29, 29, 29)
+                                .addGap(78, 78, 78)
                                 .addComponent(question1L)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
                                 .addComponent(answer1TF, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(53, 53, 53))
-                        .addGroup(qPanelLayout.createSequentialGroup()
-                                .addGap(163, 163, 163)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, qPanelLayout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(submitB)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(221, 221, 221))
         );
         qPanelLayout.setVerticalGroup(
                 qPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(qPanelLayout.createSequentialGroup()
                                 .addGap(70, 70, 70)
-                                .addGroup(qPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(question1L)
-                                        .addComponent(answer1TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(qPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(answer1TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(question1L))
                                 .addGap(109, 109, 109)
                                 .addComponent(submitB)
-                                .addContainerGap(56, Short.MAX_VALUE))
+                                .addContainerGap(156, Short.MAX_VALUE))
         );
 
         parentPanel.add(qPanel, "qPanel");
 
-        aPanel.setPreferredSize(new java.awt.Dimension(450, 290));
+        aPanel.setPreferredSize(new java.awt.Dimension(550, 390));
 
         usernameL.setText("USERNAME:");
 
@@ -339,7 +329,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
 
         websiteNL.setText("WEBITE NAME:");
 
-        homeB.setText("Home");
+        homeB.setText("HOME");
         homeB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeBActionPerformed(evt);
@@ -350,12 +340,12 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         editB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
-					editBActionPerformed(evt);
-				} catch (FileException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-            
+                    editBActionPerformed(evt);
+                } catch (FileException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
             }
         });
 
@@ -364,39 +354,42 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         aPanelLayout.setHorizontalGroup(
                 aPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(aPanelLayout.createSequentialGroup()
-                                .addGap(92, 92, 92)
-                                .addGroup(aPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(83, 83, 83)
+                                .addGroup(aPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(aPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(websiteNL, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(websiteUrlL, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(usernameL, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, aPanelLayout.createSequentialGroup()
+                                                        .addComponent(homeB)
+                                                        .addGap(141, 141, 141)
+                                                        .addComponent(editB)))
                                         .addGroup(aPanelLayout.createSequentialGroup()
-                                                .addComponent(homeB)
-                                                .addGap(68, 68, 68)
-                                                .addComponent(editB))
-                                        .addComponent(websiteNL)
-                                        .addComponent(websiteUrlL)
-                                        .addComponent(passwordL)
-                                        .addComponent(usernameL))
-                                .addContainerGap(134, Short.MAX_VALUE))
+                                                .addComponent(passwordL)
+                                                .addGap(225, 225, 225)))
+                                .addContainerGap(169, Short.MAX_VALUE))
         );
         aPanelLayout.setVerticalGroup(
                 aPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(aPanelLayout.createSequentialGroup()
-                                .addGap(102, 102, 102)
+                                .addGap(78, 78, 78)
                                 .addComponent(websiteNL)
-                                .addGap(12, 12, 12)
+                                .addGap(36, 36, 36)
                                 .addComponent(websiteUrlL)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(26, 26, 26)
                                 .addComponent(usernameL)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(36, 36, 36)
                                 .addComponent(passwordL)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(aPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(homeB)
                                         .addComponent(editB))
-                                .addContainerGap(47, Short.MAX_VALUE))
+                                .addGap(47, 47, 47))
         );
 
         parentPanel.add(aPanel, "aPanel");
 
-        editPanel.setPreferredSize(new java.awt.Dimension(450, 290));
+        editPanel.setPreferredSize(new java.awt.Dimension(550, 390));
 
         editL.setText("Edit/Delete Website [PUT WEBSITE NAME AND URL]");
 
@@ -413,14 +406,14 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         editSaveB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
-					editSaveBActionPerformed(evt);
-				} catch (FileException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+                    editSaveBActionPerformed(evt);
+                } catch (FileException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -431,73 +424,76 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
             }
         });
 
+        editHomeB.setText("HOME");
+        editHomeB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editHomeBActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout editPanelLayout = new javax.swing.GroupLayout(editPanel);
         editPanel.setLayout(editPanelLayout);
         editPanelLayout.setHorizontalGroup(
                 editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(editPanelLayout.createSequentialGroup()
-                                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(editPanelLayout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(editL))
-                                        .addGroup(editPanelLayout.createSequentialGroup()
-                                                .addGap(36, 36, 36)
-                                                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(editPanelLayout.createSequentialGroup()
-                                                                .addComponent(editQL)
-                                                                .addGap(69, 69, 69)
-                                                                .addComponent(editQTF))
-                                                        .addGroup(editPanelLayout.createSequentialGroup()
-                                                                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addGroup(editPanelLayout.createSequentialGroup()
-                                                                                .addComponent(editUserL)
-                                                                                .addGap(66, 66, 66)
-                                                                                .addComponent(editUserTF, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                        .addGroup(editPanelLayout.createSequentialGroup()
-                                                                                .addComponent(editPassL)
-                                                                                .addGap(65, 65, 65)
-                                                                                .addComponent(editPassTF, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                                .addGap(0, 105, Short.MAX_VALUE))
-                                                        .addGroup(editPanelLayout.createSequentialGroup()
-                                                                .addComponent(editAL)
-                                                                .addGap(82, 82, 82)
-                                                                .addComponent(editATF)))))
-                                .addContainerGap())
-                        .addGroup(editPanelLayout.createSequentialGroup()
                                 .addGap(78, 78, 78)
                                 .addComponent(editSaveB)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(62, 62, 62)
                                 .addComponent(editDeleteB)
-                                .addGap(66, 66, 66))
+                                .addGap(71, 71, 71)
+                                .addComponent(editHomeB)
+                                .addContainerGap(92, Short.MAX_VALUE))
+                        .addGroup(editPanelLayout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(editPanelLayout.createSequentialGroup()
+                                                .addComponent(editL)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                        .addGroup(editPanelLayout.createSequentialGroup()
+                                                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(editAL)
+                                                        .addComponent(editQL))
+                                                .addGap(45, 45, 45)
+                                                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(editQTF)
+                                                        .addComponent(editATF))
+                                                .addGap(30, 30, 30))
+                                        .addGroup(editPanelLayout.createSequentialGroup()
+                                                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(editPassL)
+                                                        .addComponent(editUserL))
+                                                .addGap(41, 41, 41)
+                                                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(editUserTF, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                                                        .addComponent(editPassTF))
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         editPanelLayout.setVerticalGroup(
                 editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(editPanelLayout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(editPanelLayout.createSequentialGroup()
-                                                .addComponent(editL)
-                                                .addGap(22, 22, 22)
-                                                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(editUserL)
-                                                        .addComponent(editUserTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(16, 16, 16)
-                                                .addComponent(editPassL)
-                                                .addGap(40, 40, 40))
-                                        .addGroup(editPanelLayout.createSequentialGroup()
-                                                .addComponent(editPassTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(editQTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(editQL))))
-                                .addGap(18, 18, 18)
+                                .addGap(33, 33, 33)
+                                .addComponent(editL)
+                                .addGap(36, 36, 36)
+                                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(editUserL)
+                                        .addComponent(editUserTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(editPassL)
+                                        .addComponent(editPassTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(26, 26, 26)
+                                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(editQTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(editQL, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(28, 28, 28)
                                 .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(editAL)
                                         .addComponent(editATF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                                .addGap(51, 51, 51)
                                 .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(editSaveB)
-                                        .addComponent(editDeleteB))
+                                        .addComponent(editDeleteB)
+                                        .addComponent(editHomeB))
                                 .addGap(35, 35, 35))
         );
 
@@ -718,8 +714,8 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         card.show(parentPanel, "homePanel");
     }
     private void editDeleteBActionPerformed(java.awt.event.ActionEvent evt) {
-        
-    	// TODO add your handling code here:
+
+        // TODO add your handling code here:
         //delete website
         //reset all textfields in editPanel
         //?asks user if they are sure they want to delete?
@@ -727,8 +723,8 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
     }
 
     private void editBActionPerformed(java.awt.event.ActionEvent evt) throws FileException {
-    	
-    	String path = "";
+
+        String path = "";
         String os = System.getProperty("os.name");
         if (os.contains("Win")){
             path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager"; // path of where passwordmanager folder will be located
@@ -737,15 +733,15 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         }
 
         FileHandler fHandler = new FileHandler(path);
-    	
+
         CardLayout card = (CardLayout)parentPanel.getLayout();
         card.show(parentPanel, "editPanel");
-        
+
     }
 
     private void editSaveBActionPerformed(java.awt.event.ActionEvent evt) throws FileException, IOException{
-    	
-    	String path = "";
+
+        String path = "";
         String os = System.getProperty("os.name");
         if (os.contains("Win")){
             path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Password_Manager"; // path of where passwordmanager folder will be located
@@ -761,7 +757,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         String question = editQTF.getText();
         String ans = editATF.getText();
 
-        
+
         Website newWeb = new Website(url, name, username, password, question, ans);
         CardLayout card = (CardLayout)parentPanel.getLayout();
         fHandler.editData(newWeb);
@@ -773,6 +769,10 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
         //update fields from text fields
         //error if left blank
         //if saved correctly, reset all the textfields to default, go to aPanel
+    }
+
+    private void editHomeBActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
     }
     /**
      * creates a new directory
@@ -833,6 +833,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
     private javax.swing.JTextField editATF;
     private javax.swing.JButton editB;
     private javax.swing.JButton editDeleteB;
+    private javax.swing.JButton editHomeB;
     private javax.swing.JLabel editL;
     private javax.swing.JPanel editPanel;
     private javax.swing.JLabel editPassL;
