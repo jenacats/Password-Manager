@@ -2,7 +2,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
  *
@@ -175,7 +175,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
                     saveBActionPerformed(evt);
                 } catch (IOException e) {
                     e.printStackTrace();
-                } catch (FileException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -287,7 +287,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
                     submitBActionPerformed(evt);
                 } catch (IOException e) {
                     e.printStackTrace();
-                } catch (FileException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -344,7 +344,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
                     editBActionPerformed(evt);
-                } catch (FileException | IOException e) {
+                } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
@@ -363,12 +363,12 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
                                                 .addComponent(websiteNL, javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(websiteUrlL, javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(usernameL, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(passwordL, javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, aPanelLayout.createSequentialGroup()
                                                         .addComponent(homeB)
                                                         .addGap(141, 141, 141)
                                                         .addComponent(editB)))
                                         .addGroup(aPanelLayout.createSequentialGroup()
-                                                .addComponent(passwordL)
                                                 .addGap(225, 225, 225)))
                                 .addContainerGap(169, Short.MAX_VALUE))
         );
@@ -413,7 +413,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
                 } catch (FileException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
-                } catch (IOException e) {
+                } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
@@ -529,7 +529,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
      * @throws IOException
      * @throws FileException
      */
-    private void saveBActionPerformed(java.awt.event.ActionEvent evt) throws IOException, FileException {
+    private void saveBActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
         // TODO add your handling code here:
         boolean check = true;
         //check if all required text files are filled in & create a new website object
@@ -611,7 +611,7 @@ public class PasswordManagerPanel extends javax.swing.JFrame{
      * @throws IOException
      * @throws FileException
      */
-    private void submitBActionPerformed(java.awt.event.ActionEvent evt) throws IOException, FileException {
+    private void submitBActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
         // TODO add your handling code here:
 
         String path = "";
@@ -747,7 +747,7 @@ private void editDeleteBActionPerformed(java.awt.event.ActionEvent evt) throws F
      * @param evt
      * @throws FileException
      */
-    private void editBActionPerformed(java.awt.event.ActionEvent evt) throws FileException, IOException {
+    private void editBActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
         String path = "";
         String os = System.getProperty("os.name");
         if (os.contains("Win")){
@@ -767,7 +767,7 @@ private void editDeleteBActionPerformed(java.awt.event.ActionEvent evt) throws F
         editL.setText("Edit / Delete Website: " + name + " [" + url + "]");
     }
 
-    private void editSaveBActionPerformed(java.awt.event.ActionEvent evt) throws FileException, IOException{
+    private void editSaveBActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
     	
     	String path = "";
         String os = System.getProperty("os.name");

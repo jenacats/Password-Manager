@@ -8,8 +8,6 @@ import java.util.Base64;
 
 public class FileHandler {
     private File file;
-    private final Base64.Decoder decoder = Base64.getDecoder();
-    private final Base64.Encoder encoder = Base64.getEncoder();
 
     /**
      * Creates filehandler object but will need to createDirectory
@@ -72,7 +70,7 @@ public class FileHandler {
      * @throws FileException throws this incase file does not exist, or text doc already exists
      * @throws IOException
      */
-    public void addWebsite(Website website) throws FileException, IOException {
+    public void addWebsite(Website website) throws Exception {
         if (file == null) {
             throw new FileException("File doesn't exist");
         } else {
@@ -81,20 +79,21 @@ public class FileHandler {
                 throw new FileException("Text doc already exists!");
 
             } else {
+                AES aes = new AES(System.getProperty("user.name")); // key is user's name
                 File textDoc = new File (file.getPath() + "/" + website.getWebsiteName() + ".txt");
                 textDoc.createNewFile();
                 FileWriter fileWriter = new FileWriter(textDoc);
                 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-                String encodedPW = encoder.encodeToString(website.getPassword().getBytes());
-                String encodedAns = encoder.encodeToString(website.getSecurityAnswer().getBytes());
+                String encryptedPW = aes.encrypt(website.getPassword());
+                String encryptedAns = aes.encrypt(website.getSecurityAnswer());
 
                 bufferedWriter.write(website.getWebsiteName() + System.lineSeparator() +
                         website.getUrl() + System.lineSeparator() +
                         website.getUsername() + System.lineSeparator() +
-                        encodedPW + System.lineSeparator() +
+                        encryptedPW + System.lineSeparator() +
                         website.getSecurityQuestion() + System.lineSeparator() +
-                        encodedAns
+                        encryptedAns
                 );
 
                 bufferedWriter.close();
@@ -102,12 +101,13 @@ public class FileHandler {
         }
     }
 
-    public String [] readWebsite(String website) throws FileException, IOException {
+    public String [] readWebsite(String website) throws Exception {
         if (file == null){
             throw new FileException("Folder doesn't exist");
         } else {
             File data = new File(file.getPath() + "/" + website + ".txt");
             if (data.exists()){
+                AES aes = new AES(System.getProperty("user.name")); // key is user's name
                 FileReader fileReader = new FileReader(data.getPath());
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
                 String [] total = new String[6];
@@ -117,7 +117,7 @@ public class FileHandler {
                     String line = bufferedReader.readLine();
                     if (i == 3 || i == 5){
 
-                        line = new String(decoder.decode(line));
+                        line = aes.decrypt(line);
                     }
                     total[i] = line;
                 }
@@ -180,18 +180,20 @@ public class FileHandler {
         }
     }
 
-    public String getAnswer(String website) throws FileException, IOException {
+    public String getAnswer(String website) throws Exception {
         if (file == null){
             throw new FileException("Folder doesn't exist");
         } else {
             File data = new File(file.getPath() + "/" + website + ".txt");
             if (data.exists()){
+                AES aes = new AES(System.getProperty("user.name")); // key is user's name
                 FileReader fileReader = new FileReader(data.getPath());
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
                 for (int i = 0; i < 5; i++){
                     bufferedReader.readLine();
                 }
-                String answer = new String(decoder.decode(bufferedReader.readLine())).toLowerCase();
+
+                String answer = aes.decrypt(bufferedReader.readLine()).toLowerCase();
 
                 bufferedReader.close();
                 return answer;
@@ -202,7 +204,7 @@ public class FileHandler {
         }
     }
 
-    public void editData(Website website) throws FileException, IOException {
+    public void editData(Website website) throws Exception {
       if (file == null){
         throw new FileException("Folder doesn't exist");
       } else {
